@@ -13,15 +13,24 @@ int main()
         char sharedlib[15] = "lib";
         strcat(sharedlib, op);
         strcat(sharedlib, ".so");
-        void* library = dlopen(sharedlib);
+        void* library = dlopen(sharedlib, RTLD_LAZY);
+        if(library==NULL)
+        {
+            dlclose(library);
+            continue;
+        }
         int(*function)(int, int);
-        function = dlsym(library, op);
-        
+        function = (int (*)(int, int))dlsym(library, op);
+        if(function==NULL)
+        {
+            dlclose(library);
+            continue;
+            
+        }
         int answer = function(op1, op2);
         printf("%d\n",answer);
 
         dlclose(library);
-
     }
     return 0;
 }
