@@ -101,7 +101,7 @@ insert:
     addi sp, sp, 40
  
     bne a0, x0, final_exit_insert
-    li a0, s0
+    mv a0, s0
     final_exit_insert:
         ret
 
@@ -168,7 +168,7 @@ getAtMost:
             beq x0, x0, loop_predecessor
         
     exit_predecessor:
-        li a0, s3
+        mv a0, s3
     
         ld ra, 0(sp)
         ld s0, 8(sp)

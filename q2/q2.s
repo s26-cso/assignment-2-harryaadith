@@ -67,7 +67,7 @@ main:
 
         addi t0, s5, -16
         add t0, s6, t0
-        ld t1, 8(t0)       =
+        ld t1, 8(t0)       
         beq x0, x0, store_and_push
 
     skip_add_q2:
