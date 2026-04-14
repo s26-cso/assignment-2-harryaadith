@@ -17,13 +17,14 @@ int main()
         void* library = dlopen(sharedlib, RTLD_LAZY);
         if(library==NULL)
         {
-            dlclose(library);
+            
             continue;
         }
         int(*function)(int, int);
         function = (int (*)(int, int))dlsym(library, op);
         if(function==NULL)
         {
+            dlclose(library);
             continue;   
         }
         int answer = function(op1, op2);
