@@ -17,7 +17,6 @@ int main()
         void* library = dlopen(sharedlib, RTLD_LAZY);
         if(library==NULL)
         {
-            
             continue;
         }
         int(*function)(int, int);
