@@ -8,7 +8,8 @@ int main()
     {
         char op[6];
         int op1, op2;
-        scanf("%s", op);
+        if(scanf("%s", op)!=1)
+        break;       
         scanf("%d%d",&op1, &op2);
         char sharedlib[15] = "lib";
         strcat(sharedlib, op);
@@ -23,9 +24,7 @@ int main()
         function = (int (*)(int, int))dlsym(library, op);
         if(function==NULL)
         {
-            dlclose(library);
-            continue;
-            
+            continue;   
         }
         int answer = function(op1, op2);
         printf("%d\n",answer);
